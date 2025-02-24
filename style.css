@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #222;
+    font-family: 'Pixelify Sans', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .app-container {
+    width: 400px;
+    height: 650px;
+    position: relative;
+    background: #FFDAB9;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+  }
+  
+  .title {
+    color: #FFA800;
+    font-size: 32px;
+    letter-spacing: 1.8px;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .control-btn {
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    width: 380px;
+    height: 580px;
+    margin: 0 auto;
+    border: 8px solid #FFA800;
+    border-radius: 12px;
+    position: relative;
+  }
+  
+  .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .message {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 45%;
+    transform: translateY(-50%);
+    color: #1E1E1E;
+    font-size: 32px;
+    letter-spacing: 1.8px;
+  }
+  
+  .start-btn {
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+bottom: 35%;
+width: 220px;
+height: 70px;
+background: #FFDAB9;
+border: 4px solid #FFA800;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+transition: 0.5s ease-in-out;
+}
+
+.start-btn:hover {
+transform: translateX(-50%) scale(1.2);
+}
+  
+  .start-text {
+    color: #FFA800;
+    font-size: 36px;
+    font-family: 'Pixelify Sans', cursive;
+    letter-spacing: 1.8px;
+  }
+
+  .menu-heading {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 5%;
+    transform: translateY(-50%);
+    color: #1E1E1E;
+    font-size: 23px;
+    letter-spacing: 1.8px;
+  }
+  
+  .menu-options {
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    padding: 0 30px;
+    top: 20%;
+    height: calc(100% - 120px);
+  }
+  
+  .menu-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .menu-option:hover {
+    transform: scale(1.1);
+  }
+  
+  .icon-placeholder {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .view-icon {
+    background-color: transparent;
+    background-image: url('assets/view frames/View image.png');
+  }
+  
+  .book-icon {
+    background-color: transparent;
+    background-image: url('assets/book frames/Book icon 2.png');
+  }
+  
+  .settings-icon {
+    background-color: transparent;
+    background-image: url('assets/settings frames/Settings.png');
+  }
+  
+  .exit-icon {
+    background-color: transparent;
+    background-image: url('assets/door frames/Door.png');
+  }
+  
+  .option-text {
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+  }
+
+  .settings-icon:hover {
+    animation: settings_animation 0.6s forwards;
+  }
+
+  .book-icon:hover {
+    animation: book_animation 1s infinite;
+  }
+
+  .exit-icon:hover {
+    animation: door_animation 1s forwards;
+  }
+  .view-icon:hover {
+    animation: view_animation 1.5s infinite;
+  }
+
+  @keyframes settings_animation {
+    0% { background-image: url('assets/settings frames/Settings.png'); }
+    25% { background-image: url('assets/settings frames/Settings frame 2.png'); }
+    50% { background-image: url('assets/settings frames/Settings frame 3.png'); }
+    75% { background-image: url('assets/settings frames/Settings frame 4.png'); }
+    100% { background-image: url('assets/settings frames/Settings final frame.png'); }
+  }
+
+@keyframes book_animation {
+    0% { background-image: url('assets/book frames/Book icon 2.png'); }
+    14.3% { background-image: url('assets/book frames/Book frame 2.png'); }
+    28.6% { background-image: url('assets/book frames/Book frame 3.png'); }
+    42.9% { background-image: url('assets/book frames/Book frame 4.png'); }
+    57.2% { background-image: url('assets/book frames/Book frame 5.png'); }
+    71.5% { background-image: url('assets/book frames/Book frame 6.png'); }
+    85.8% { background-image: url('assets/book frames/Book frame 7.png'); }
+    100% { background-image: url('assets/book frames/Book frame 8.png'); }
+}
+
+@keyframes door_animation{
+    0% {background-image: url('assets/door frames/Door.png');}
+    20% {background-image: url('assets/door frames/Door frame 2.png');}
+    40% {background-image: url('assets/door frames/Door frame 3.png');}
+    60% {background-image: url('assets/door frames/Door frame 4.png');}
+    80% {background-image: url('assets/door frames/Door frame 5.png');}
+    100% {background-image: url('assets/door frames/Door frame 6.png');}
+}
+
+@keyframes view_animation{
+    0% { background-image: url('assets/view frames/View image.png'); }
+    7.7% { background-image: url('assets/view frames/Eye frame 2.png'); }
+    15.4% { background-image: url('assets/view frames/Eye frame 3.png'); }
+    23.1% { background-image: url('assets/view frames/Eye frame 4.png'); }
+    30.8% { background-image: url('assets/view frames/Eye frame 5.png'); }
+    38.5% { background-image: url('assets/view frames/Eye frame 6.png'); }
+    46.2% { background-image: url('assets/view frames/Eye frame 7.png'); }
+    53.9% { background-image: url('assets/view frames/Eye frame 8.png'); }
+    61.6% { background-image: url('assets/view frames/Eye frame 9.png'); }
+    69.3% { background-image: url('assets/view frames/Eye frame 10.png'); }
+    77% { background-image: url('assets/view frames/Eye frame 11.png'); }
+    84.7% { background-image: url('assets/view frames/Eye frame 12.png'); }
+    92.4% { background-image: url('assets/view frames/Eye frame 13.png'); }
+    100% { background-image: url('assets/view frames/View image.png'); }
+}
+
+  

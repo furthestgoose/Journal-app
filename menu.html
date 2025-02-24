@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="title">JOURNAL APP</div>
+      <div class="controls">
+        <img class="control-btn minimize-btn" src="./assets/Minimise 3.png" alt="Minimize">
+        <img class="control-btn close-btn" src="./assets/Exit 2.png" alt="Close">
+      </div>
+    </div>
+    <div class="main-content">
+
+      <img class="background-img" src="./assets/Background 3.png" alt="Pixel Art Background">
+      
+      <div class="menu-heading">What would you like to do?</div>
+      
+      <div class="menu-options">
+        <div class="menu-option">
+          <div class="icon-placeholder view-icon"></div>
+          <div class="option-text">View Entries</div>
+        </div>
+        
+        <div class="menu-option">
+          <div class="icon-placeholder book-icon"></div>
+          <div class="option-text">Write Entry</div>
+        </div>
+        
+        <div class="menu-option">
+          <div class="icon-placeholder settings-icon"></div>
+          <div class="option-text">Settings</div>
+        </div>
+        
+        <div class="menu-option" id="exit-option">
+            <div class="icon-placeholder exit-icon"></div>
+            <div class="option-text">Exit</div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    src="./preload.js" </script>
+    <script>
+        document.getElementById('exit-option').addEventListener('click', function() {
+          window.electron.exitApp();
+        });
+      </script>
+</body>
+</html>
