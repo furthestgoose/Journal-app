@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/n/a/issues"
   },
-  "homepage": "https://github.com/n/a#readme"
+  "homepage": "https://github.com/n/a#readme",
+  "dependencies": {
+    "electron": "^34.3.0",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  }
 }

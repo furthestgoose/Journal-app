@@ -61,6 +61,64 @@
     object-fit: cover;
     border-radius: 4px;
   }
+
+  .menu-heading {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 5%;
+    transform: translateY(-50%);
+    color: #1E1E1E;
+    font-size: 23px;
+    letter-spacing: 1.8px;
+    z-index: 2;
+}
+
+.entries-container {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.entry {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.delete-btn, .edit-btn {
+    position: absolute;
+    top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    right: 60px;
+    background-color: blue;
+}
+
+.delete-btn {
+    right: 10px;
+}
+
+.edit-form {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
   
   .message {
     position: absolute;
@@ -131,13 +189,136 @@ transform: translateX(-50%) scale(1.2);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s;
   }
   
-  .menu-option:hover {
+  .entry-form {
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0 30px;
+    top: 20%;
+    height: calc(100% - 120px);
+  }
+
+  .write-container{
+    width: 340px;
+    height: 450px;
+    background: #FFDAB9;
+    border: 5px #FFA800 solid;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 10%;
+
+  }
+
+  .submit-button{
+    width: 100px;
+    height: 45px;
+    background: #FFDAB9;
+    border: 5px #50C878 solid;
+    bottom: -28%;
+    position: absolute;
+    right: -200%;
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 10px;
+    color: #50C878;
+    letter-spacing: 1.8px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+  }
+
+  .submit-button:hover{
     transform: scale(1.1);
   }
+
+  
+  
+  .return-to-menu-write {
+    width: 100px;
+    height: 45px;
+    background: #FFDAB9;
+    border: 5px #FA5053 solid;
+    bottom: -13%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 2%;
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 10px;
+    color: #FA5053;
+    letter-spacing: 1.8px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+  }
+
+  .return-to-menu-write:hover{
+    transform: scale(1.1);
+  }
+
+  .entry-content{
+    width: 329px;
+    height: 350px;
+    background: #FFDAB9;
+    top: 0%;
+    position: absolute;
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 15px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    resize: none;
+  }
+
+  .entry-content:focus{
+    outline: none;
+  }
+  .entry-title {
+    width: 150px;
+    height: 45px;
+    background: #FFDAB9;
+    position: absolute;
+    left: -200%;
+    top: -25%;
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 15px;
+    color: black;
+    letter-spacing: 1.8px;
+    border: none;
+    resize: none;
+  }
+
+  .entry-title:focus {
+    outline: none;
+  }
+
+  .entry-date {
+    width: 150px;
+    height: 45px;
+    background: #FFDAB9;
+    position: absolute;
+    right: -200%;
+    top: -25%;
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 15px;
+    color: black;
+    letter-spacing: 1.8px;
+    border: none;
+    resize: none;
+  }
+
+  .entry-date:focus {
+    outline: none;
+  }
+
+  
   
   .icon-placeholder {
     width: 150px;
@@ -151,21 +332,25 @@ transform: translateX(-50%) scale(1.2);
   .view-icon {
     background-color: transparent;
     background-image: url('assets/view frames/View image.png');
+    transition: transform 0.2s;
   }
   
   .book-icon {
     background-color: transparent;
     background-image: url('assets/book frames/Book icon 2.png');
+    transition: transform 0.2s;
   }
   
   .settings-icon {
     background-color: transparent;
     background-image: url('assets/settings frames/Settings.png');
+    transition: transform 0.2s;
   }
   
   .exit-icon {
     background-color: transparent;
     background-image: url('assets/door frames/Door.png');
+    transition: transform 0.2s;
   }
   
   .option-text {
@@ -175,17 +360,21 @@ transform: translateX(-50%) scale(1.2);
   }
 
   .settings-icon:hover {
+    transform: scale(1.1);
     animation: settings_animation 0.6s forwards;
   }
 
   .book-icon:hover {
+    transform: scale(1.1);
     animation: book_animation 1s infinite;
   }
 
   .exit-icon:hover {
+    transform: scale(1.1);
     animation: door_animation 1s forwards;
   }
   .view-icon:hover {
+    transform: scale(1.1);
     animation: view_animation 1.5s infinite;
   }
 
@@ -234,4 +423,3 @@ transform: translateX(-50%) scale(1.2);
     100% { background-image: url('assets/view frames/View image.png'); }
 }
 
-  

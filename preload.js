@@ -1,4 +1,12 @@
-const { contextBridge, ipcRenderer } = require('electron');
+
+  const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electron', {
+  getEntries: () => ipcRenderer.invoke('get-entries'),
+  addEntry: (date, title, content) => ipcRenderer.invoke('add-entry', date, title, content),
+  deleteEntry: (id) => ipcRenderer.invoke('delete-entry', id),
+  updateEntry: (id, date, title, content) => ipcRenderer.invoke('update-entry', id, date, title, content)
+});
 
 const images = [
   'assets/settings frames/Settings.png',

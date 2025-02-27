@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="title">JOURNAL APP</div>
+      <div class="controls">
+        <img class="control-btn minimize-btn" src="./assets/Minimise 3.png" alt="Minimize">
+        <img class="control-btn close-btn" src="./assets/Exit 2.png" alt="Close">
+      </div>
+    </div>
+    <div class="main-content">
+      <img class="background-img" src="./assets/Background 3.png" alt="Pixel Art Background">
+      <div class="menu-heading">How was your day?</div>
+      <div class="write-container">
+      <form id="entry-form" class="entry-form">
+        <input type="date" class = "entry-date" id="entry-date" placeholder="20/03/2020"required>
+        <input type="text" id="entry-title" placeholder="Title: Example" class="entry-title" required>
+        <textarea id="entry-content" class = "entry-content" placeholder="Write your entry here..." required></textarea>
+        <button class="submit-button" type="submit">Save Entry</button>
+      </form>
+      <a href="menu.html"><div class="return-to-menu-write">
+        Go to menu
+      </div>
+    </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('entry-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const date = document.getElementById('entry-date').value;
+      const title = document.getElementById('entry-title').value;
+      const content = document.getElementById('entry-content').value;
+      window.electron.addEntry(date, title, content)
+        .then(() => {
+          alert('Entry saved successfully!');
+          document.getElementById('entry-form').reset();
+        })
+        .catch(error => {
+          console.error('Error saving entry:', error);
+          alert('Failed to save entry.');
+        });
+        window.location.replace("menu.html");
+    });
+  </script>
+</body>
+</html>
