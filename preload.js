@@ -5,7 +5,12 @@ contextBridge.exposeInMainWorld('electron', {
   getEntries: () => ipcRenderer.invoke('get-entries'),
   addEntry: (date, title, content) => ipcRenderer.invoke('add-entry', date, title, content),
   deleteEntry: (id) => ipcRenderer.invoke('delete-entry', id),
+  exitApp: () => ipcRenderer.send('exit-app'),
   updateEntry: (id, date, title, content) => ipcRenderer.invoke('update-entry', id, date, title, content)
+});
+
+document.getElementById('exit-option').addEventListener('click', function() {
+  window.electron.exitApp();
 });
 
 const images = [
@@ -48,6 +53,3 @@ images.forEach(src => {
   img.src = src;
 });
 
-contextBridge.exposeInMainWorld('electron', {
-  exitApp: () => ipcRenderer.send('exit-app'),
-});

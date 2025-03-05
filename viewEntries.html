@@ -19,8 +19,10 @@
             </div>
         </div>
         <div class="main-content">
-            <img class="background-img" src="./assets/Background 3.png" alt="Pixel Art Background">
-            <div class="menu-heading">Your Journal Entries</div>
+            <a href="menu.html"><div class="return-to-menu-view">
+                Go to menu
+              </div>
+            </a>
             <div id="entries" class="entries-container"></div>
         </div>
     </div>
@@ -29,19 +31,22 @@
         document.addEventListener('DOMContentLoaded', function() {
             window.electron.getEntries()
                 .then(entries => {
+                    entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+
                     const entriesDiv = document.getElementById('entries');
                     entries.forEach(entry => {
                         const entryDiv = document.createElement('div');
                         entryDiv.classList.add('entry');
                         entryDiv.innerHTML = `
-                            <h2>${entry.title}</h2>
-                            <p>${entry.content}</p>
+                            <p class="display-date" data-id="${entry.id}">${entry.date}</p>
+                            <h2 class="display-title" data-id="${entry.id}">${entry.title}</h2>
+                            <p class="display-content" data-id="${entry.id}">${entry.content}</p>
                             <button class="edit-btn" data-id="${entry.id}">Edit</button>
                             <button class="delete-btn" data-id="${entry.id}">Delete</button>
-                            <div class="edit-form" id="edit-form-${entry.id}">
-                                <input type="date" id="edit-date-${entry.id}" value="${entry.date}" required>
-                                <input type="text" id="edit-title-${entry.id}" value="${entry.title}" required>
-                                <textarea id="edit-content-${entry.id}" required>${entry.content}</textarea>
+                            <div class="edit-form" id="edit-form-${entry.id}" style="display: none;">
+                                <input type="date" class="edit-date" id="edit-date-${entry.id}" value="${entry.date}" required>
+                                <input type="text" class="edit-title" id="edit-title-${entry.id}" value="${entry.title}" required>
+                                <textarea class="edit-content" id="edit-content-${entry.id}" required>${entry.content}</textarea>
                                 <button class="save-btn" data-id="${entry.id}">Save</button>
                             </div>
                         `;
@@ -51,25 +56,55 @@
                     document.querySelectorAll('.edit-btn').forEach(button => {
                         button.addEventListener('click', function() {
                             const id = this.getAttribute('data-id');
+                            const entry = this.closest('.entry');
                             const editForm = document.getElementById(`edit-form-${id}`);
+                            
+                            const currentHeight = entry.offsetHeight;
+                            entry.style.height = `${currentHeight}px`;
+                            
+                            
                             editForm.style.display = 'flex';
+                            
+                            
+                            entry.querySelector('.edit-btn').style.display = 'none';
+                            entry.querySelector('.delete-btn').style.display = 'none';
+                            entry.querySelector('.display-content').style.display = 'none';
+                            entry.querySelector('.display-title').style.display = 'none';
+                            entry.querySelector('.display-date').style.display = 'none';
                         });
                     });
 
                     document.querySelectorAll('.save-btn').forEach(button => {
                         button.addEventListener('click', function() {
                             const id = this.getAttribute('data-id');
+                            const entry = this.closest('.entry');
+                            const editForm = document.getElementById(`edit-form-${id}`);
                             const date = document.getElementById(`edit-date-${id}`).value;
                             const title = document.getElementById(`edit-title-${id}`).value;
                             const content = document.getElementById(`edit-content-${id}`).value;
+
+                            
+                            entry.style.height = 'auto';
+
+                            
+                            entry.querySelector('.edit-btn').style.display = 'block';
+                            entry.querySelector('.delete-btn').style.display = 'block';
+                            entry.querySelector('.display-content').style.display = 'block';
+                            entry.querySelector('.display-title').style.display = 'block';
+                            entry.querySelector('.display-date').style.display = 'block';
+
+                            
+                            editForm.style.display = 'none';
+
                             window.electron.updateEntry(id, date, title, content)
                                 .then(() => {
                                     alert('Entry updated successfully!');
                                     const editForm = document.getElementById(`edit-form-${id}`);
                                     editForm.style.display = 'none';
                                     const entryDiv = document.querySelector(`.entry .edit-btn[data-id="${id}"]`).parentElement;
+                                    entryDiv.querySelector('p').textContent = date;
                                     entryDiv.querySelector('h2').textContent = title;
-                                    entryDiv.querySelector('p').textContent = content;
+                                    entryDiv.querySelector(`.display-content[data-id="${id}"]`).textContent = content;
                                 })
                                 .catch(error => {
                                     console.error('Error updating entry:', error);
